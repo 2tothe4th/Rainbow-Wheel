@@ -118,10 +118,10 @@ namespace RainbowWheel
             //https://www.shutterstock.com/blog/common-aspect-ratios-photo-image-sizes#:~:text=A%201%3A1%20ratio%20means,template%20on%20social%20media%20sites.
             string parentDirectory = Console.ReadLine(); 
             
-            double frameRate = 60;
+            double frameRate = 30;
             double frequency = 0.25;
-            double screenWidth = 720;
-            double screenHeight = 720;
+            double screenWidth =  1080;
+            double screenHeight = 1080;
 
             //Haskell naming scheme
             for (int f = 0; f < frameRate / frequency; f++)
@@ -156,8 +156,8 @@ namespace RainbowWheel
             //http://convertio.co/mp4-gif/
             */
             Process.Start(
-                $"cd {parentDirectory}\n" +
-                "ffmpeg -framerate 60 -pattern_type sequence -i frame%01d.png -s:v 1920x1080 -c:v libx264 -pix_fmt yuv420p out.mp4");
+                $"cd '{parentDirectory}'; " +
+                $"ffmpeg -framerate 60 -pattern_type sequence -i frame%01d.png -s:v {screenWidth}x{screenHeight} -c:v libx264 -pix_fmt yuv420p out.mp4");
         }
     }
 }
