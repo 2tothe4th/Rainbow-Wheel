@@ -120,8 +120,8 @@ namespace RainbowWheel
             
             double frameRate = 60;
             double frequency = 0.25;
-            double screenWidth = 1080;
-            double screenHeight = 1080;
+            double screenWidth = 720;
+            double screenHeight = 720;
 
             //Haskell naming scheme
             for (int f = 0; f < frameRate / frequency; f++)
