@@ -119,9 +119,9 @@ namespace RainbowWheel
             string parentDirectory = Console.ReadLine(); 
             
             double frameRate = 30;
-            double frequency = 0.25;
-            double screenWidth =  1080;
-            double screenHeight = 1080;
+            double frequency = 0.5;
+            double screenWidth =  1280;
+            double screenHeight = 1280;
 
             //Haskell naming scheme
             for (int f = 0; f < frameRate / frequency; f++)
@@ -155,9 +155,16 @@ namespace RainbowWheel
 
             //http://convertio.co/mp4-gif/
             */
-            Process.Start(
-                $"cd '{parentDirectory}'; " +
-                $"ffmpeg -framerate 60 -pattern_type sequence -i frame%01d.png -s:v {screenWidth}x{screenHeight} -c:v libx264 -pix_fmt yuv420p out.mp4");
+            using (StreamWriter sw = new StreamWriter("../../../concat.bat"))
+            {
+                //https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/echo
+                //https://answers.microsoft.com/en-us/windows/forum/all/comments-in-batch-files/bb73da92-5bfc-41ff-9d59-c1b82de2c0d8
+                sw.Write($"cd '{parentDirectory}'\n" +
+                    $"ffmpeg -framerate 60 -pattern_type sequence -i frame%01d.png -s:v {screenWidth}x{screenHeight} -c:v libx264 -pix_fmt yuv420p out.mp4");
+            }
+            Process.Start("../../../concat.bat");
+
+
         }
     }
 }
